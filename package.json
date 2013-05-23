@@ -1,0 +1,26 @@
+{
+    "name": "simple-file-writer",
+    "version": "0.0.1",
+    "description": "write to a file, manage back pressure and buffering",
+    "keywords": ["logger", "filesystem", "file", "stream", "backpressure"],
+    "main": "index.js",    
+    "author": {
+        "name": "Yaniv Kessler"
+    },
+    "repository": {
+        "type": "git",
+        "url": "http://github.co/yanush/simple-file-writer.git"
+    },
+    "bugs": {
+        "url": "http://github.com/yanush/simple-file-writer/issues"
+    },
+    "licenses": [
+        {
+        "type": "MIT",
+        "url": "https://raw.github.com/yanush/simple-file-writer/master/LICENSE"
+        }
+    ],    
+    "engine": {
+        "node": ">=0.10"
+    }
+}
