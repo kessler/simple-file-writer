@@ -23,6 +23,12 @@ npm install simple-file-writer
 	writer.setupFile('./2.log');
 
 	writer.write('yey!');	
+
+	var fs = require('fs');
+
+	var rs = fs.createReadStream('somefile');
+
+	writer.write(fs); // piped to the underlying write stream
 ```
 
 ###TODO:
