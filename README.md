@@ -28,7 +28,7 @@ npm install simple-file-writer
 
 	var rs = fs.createReadStream('somefile');
 
-	writer.write(fs); // piped to the underlying write stream
+	writer.write(rs); // piped to the underlying write stream
 ```
 
 ###TODO:
