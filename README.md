@@ -1,9 +1,7 @@
 simple file writer
 ===================
 
-A file writer that does it (hopefully) by the book :-)
-
-Handles backpressure and buffering
+A file writer. Handles backpressure by buffering. 
 
 ###Install
 
@@ -32,5 +30,5 @@ npm install simple-file-writer
 ```
 
 ###TODO:
-tests!
+test "buffering" and "buffering when backpressured" are working as expected
 

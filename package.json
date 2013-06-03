@@ -1,6 +1,6 @@
 {
     "name": "simple-file-writer",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "write to a file, manage back pressure and buffering",
     "keywords": ["logger", "filesystem", "file", "stream", "backpressure"],
     "main": "index.js",    
