@@ -1,5 +1,30 @@
 var fs = require('fs');
 var assert = require('assert');
+var $u = require('util');
+var Readable = require('stream').Readable;
+
+$u.inherits(TestStream, Readable);
+function TestStream(data) {
+	Readable.call(this);
+
+	this.data = data;
+	this.progress = 0;
+	this.step = Math.ceil(data.length / 2);
+}
+
+TestStream.prototype._read = function(n) {
+	
+	var start = this.progress;
+	this.progress += this.step;
+	this.push(this.data.substr(start, this.step));		
+
+	if (this.progress >= this.data.length) {								
+		return this.push(null);
+	}
+};
+
+module.exports.TestStream = TestStream;
+
 
 module.exports.verifyDataIntegrity = function(expectedRowCount, expectedRowSize, done) {
 	var expectedSum = ((expectedRowSize - 1) * expectedRowSize) / 2;

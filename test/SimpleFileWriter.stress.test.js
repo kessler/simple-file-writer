@@ -7,11 +7,11 @@ var fs = require('fs');
 var rows = 10000;
 var rowSize = 1333;
 var rowData = testutil.createRowData(rowSize);
-var logfile = require('node-uuid')();
 
 describe('stress string test - ', function () {
 
 	it('write lots of strings', function (done) {
+		var logfile = require('node-uuid')();
 		testutil.logs.push(logfile);
 
 		var writer = new SimpleFileWriter(logfile);
@@ -29,5 +29,26 @@ describe('stress string test - ', function () {
 
 		this.timeout(15000);
 		
+	});
+
+	it('write lots of streams (pipes them)', function (done) {
+		var logfile = require('node-uuid')();
+		testutil.logs.push(logfile);
+		var writer = new SimpleFileWriter(logfile);
+		var writes = 0;
+
+		function callback() {
+			if (++writes === rows) {			
+				fs.readFile(logfile, 'utf8', testutil.verifyDataIntegrity(rows, rowSize, done));					
+			}
+		}
+		
+		for (var x = 0; x < rows; x++) {
+			var s = new testutil.TestStream(rowData);
+			writer.write(s, callback);		
+		}
+
+		this.timeout(20000);		
+
 	});
 });
