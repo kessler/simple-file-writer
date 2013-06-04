@@ -4,7 +4,7 @@ var testutil = require('./testutil');
 var fs = require('fs');
 
 // TEST PARAMS
-var rows = 3;
+var rows = 100;
 var rowSize = 100000;
 var rowData = testutil.createRowData(rowSize);
 
@@ -35,7 +35,7 @@ describe('big chunk test - ', function () {
 	it('streams', function (done) {
 		var logfile = require('node-uuid')();
 		
-		//testutil.logs.push(logfile);
+		testutil.logs.push(logfile);
 
 		var writer = new SimpleFileWriter(logfile);
 
