@@ -1,6 +1,6 @@
 {
     "name": "simple-file-writer",
-    "version": "0.0.3",
+    "version": "0.0.5",
     "description": "write to a file, manage back pressure and buffering",
     "keywords": ["logger", "filesystem", "file", "stream", "backpressure"],
     "main": "index.js",    
@@ -19,7 +19,10 @@
         "type": "MIT",
         "url": "https://raw.github.com/yanush/simple-file-writer/master/LICENSE"
         }
-    ],    
+    ],   
+    "devDependencies": {
+        "node-uuid": "*"
+    },
     "engine": {
         "node": ">=0.10"
     }
