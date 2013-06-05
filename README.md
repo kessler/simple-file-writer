@@ -50,7 +50,7 @@ npm install simple-file-writer
 	
 ```
 
-### usage example 2 - MIX!
+### usage example 3 - MIX!
 ```
 	var SimpleFileWriter = require('simple-file-writer');
 
