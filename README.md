@@ -43,8 +43,3 @@ npm install simple-file-writer
 	});
 	
 ```
-
-
-###TODO:
-test "buffering" and "buffering when backpressured" are working as expected
-
