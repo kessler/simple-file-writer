@@ -180,4 +180,32 @@ describe('basic tests - write stuff to disk - ', function () {
 			});	
 		}, 1000)
 	});
+
+	it('ends', function (done) {
+		var logfile = testutil.newLogFilename();
+		var writer = testutil.newWriter(logfile);
+
+		for (var i = 0; i < 100000; i++) {
+			writer.write('abracadabra!!!! abracadabra!!!! abracadabra!!!! abracadabra!!!!');
+		}
+
+		assert.ok(writer._buffer.length > 0);
+
+		writer.end();
+
+		try {
+			writer.write('should not be written');
+			assert.fail('as exception should have been thrown');
+		} catch (e) {
+			assert.ok(e);
+		}
+
+		console.log('if this test times out it means that there was a problem with the flushing, its either too slow or not happening at all');
+
+		this.timeout(15000);
+		setInterval(function () {
+			if(writer._buffer.length === 0)
+				done();
+		}, 2000);
+	});
 });
