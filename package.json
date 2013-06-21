@@ -9,10 +9,10 @@
     },
     "repository": {
         "type": "git",
-        "url": "http://github.co/kessler-y/simple-file-writer.git"
+        "url": "https://github.com/kessler-y/simple-file-writer.git"
     },
     "bugs": {
-        "url": "http://github.com/kessler-y/simple-file-writer/issues"
+        "url": "https://github.com/kessler-y/simple-file-writer/issues"
     },
     "licenses": [
         {
