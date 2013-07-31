@@ -31,7 +31,7 @@ describe('stress string test - ', function () {
 		for (var x = 0; x < rows; x++) 
 		 	writer.write(rowData, callback);		
 
-		this.timeout(15000);
+		this.timeout(35000);
 		
 	});
 });
