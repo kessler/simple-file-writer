@@ -1,25 +1,25 @@
 {
     "name": "simple-file-writer",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "write to a file, manage back pressure and buffering",
     "keywords": ["logger", "filesystem", "file", "stream", "backpressure"],
-    "main": "index.js",    
+    "main": "index.js",
     "author": {
         "name": "Yaniv Kessler"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/kessler-y/simple-file-writer.git"
+        "url": "https://github.com/kessler/simple-file-writer.git"
     },
     "bugs": {
-        "url": "https://github.com/kessler-y/simple-file-writer/issues"
+        "url": "https://github.com/kessler/simple-file-writer/issues"
     },
     "licenses": [
         {
         "type": "MIT",
-        "url": "https://raw.github.com/kessler-y/simple-file-writer/master/LICENSE"
+        "url": "https://raw.github.com/kessler/simple-file-writer/master/LICENSE"
         }
-    ],   
+    ],
     "devDependencies": {
         "node-uuid": "*"
     },
