@@ -1,12 +1,12 @@
 simple file writer
 ===================
 
-A file writer. Handles backpressure by buffering. You don't always want to do that.
+A swiss army file writer. Handles backpressure by buffering. You don't always want to do that.
 
 Data will be written in the order it was fed to the writer.
 
 Extensive tests are included.
- 
+
 ###Install
 
 ```
@@ -26,7 +26,7 @@ npm install simple-file-writer
 
 	writer.write(new Buffer('yey!'), function() {
 		console.log('message written');
-	});	
+	});
 ```
 
 ### usage example 2 - streams
@@ -37,7 +37,7 @@ npm install simple-file-writer
 
 	var http = require('http');
 
-	http.createServer(function(request, response) {		
+	http.createServer(function(request, response) {
 		//pipe to file
 		writer.write(request, function () {
 			response.end();
@@ -47,7 +47,7 @@ npm install simple-file-writer
 	http.listen(8181, function() {
 		console.log('server listening');
 	});
-	
+
 ```
 
 ### usage example 3 - MIX!
@@ -58,7 +58,7 @@ npm install simple-file-writer
 
 	var http = require('http');
 
-	http.createServer(function(request, response) {		
+	http.createServer(function(request, response) {
 		//pipe to file
 		writer.write(request, function () {
 			response.end();
@@ -72,5 +72,5 @@ npm install simple-file-writer
 	http.listen(8181, function() {
 		console.log('server listening');
 	});
-	
+
 ```
