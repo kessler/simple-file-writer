@@ -1,29 +1,35 @@
 {
-    "name": "simple-file-writer",
-    "version": "1.0.6",
-    "description": "write to a file, manage back pressure and buffering",
-    "keywords": ["logger", "filesystem", "file", "stream", "backpressure"],
-    "main": "index.js",
-    "author": {
-        "name": "Yaniv Kessler"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/kessler/simple-file-writer.git"
-    },
-    "bugs": {
-        "url": "https://github.com/kessler/simple-file-writer/issues"
-    },
-    "licenses": [
-        {
-        "type": "MIT",
-        "url": "https://raw.github.com/kessler/simple-file-writer/master/LICENSE"
-        }
-    ],
-    "devDependencies": {
-        "node-uuid": "*"
-    },
-    "engine": {
-        "node": ">=0.10"
+  "name": "simple-file-writer",
+  "version": "1.0.8",
+  "description": "write to a file, manage back pressure and buffering",
+  "keywords": [
+    "logger",
+    "filesystem",
+    "file",
+    "stream",
+    "backpressure"
+  ],
+  "main": "index.js",
+  "author": {
+    "name": "Yaniv Kessler"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kessler/simple-file-writer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kessler/simple-file-writer/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://raw.github.com/kessler/simple-file-writer/master/LICENSE"
     }
+  ],
+  "devDependencies": {
+    "node-uuid": "*"
+  },
+  "engine": {
+    "node": ">=0.10"
+  }
 }

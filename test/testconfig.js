@@ -4,7 +4,11 @@ module.exports = {
 		rows: 100
 	},
 	'stress.test': {
-		rowSize: 100,
-		rows: 100000	
+		rowSize: 3000,
+		rows: 10000
+	},
+	'mass.rotate': {
+		rowSize: 3000,
+		rows: 10000
 	}
 };

@@ -13,7 +13,7 @@ describe('big chunk test - ', function () {
 
 	it('streams', function (done) {
 		var logfile = testutil.newLogFilename();
-		
+
 		var writer = testutil.newWriter(logfile);
 
 		var writes = 0;
@@ -21,18 +21,18 @@ describe('big chunk test - ', function () {
 		var start = Date.now();
 
 		function callback() {
-			if (++writes === rows) {						
+			if (++writes === rows) {
 				console.log('average %s (writes/ms)', writes / (Date.now() - start));
-				console.log('verifying data integrity');				
-				fs.readFile(logfile, 'utf8', testutil.verifyDataIntegrity(rows, rowSize, done));
+				console.log('verifying data integrity');
+				fs.readFile(logfile, 'utf8', testutil.verifyDataIntegrity(rows, rowSize, done, logfile));
 			}
 		}
-		
+
 		for (var x = 0; x < rows; x++) {
 			var s = new testutil.TestStream(rowData);
-			writer.write(s, callback);		
+			writer.write(s, callback);
 		}
 
-		this.timeout(20000);	
+		this.timeout(20000);
 	});
 });

@@ -16,19 +16,19 @@ describe('basic tests - write stuff to disk - ', function () {
 		var writer = testutil.newWriter(logfile);
 
 		assert.ok(writer instanceof SimpleFileWriter);
-		
-	 	writer.write(new Buffer('boo').toString('base64'), 'base64');		
+
+	 	writer.write(new Buffer('boo').toString('base64'), 'base64');
 
 		this.timeout(2000);
 		setTimeout(function () {
 			fs.readFile(logfile, 'base64', function(err, data) {
 				if (err) {
-					assert.fail(err);					
+					assert.fail(err);
 				}
 
 				assert.strictEqual(new Buffer('boo').toString('base64'), data)
 				done();
-			});	
+			});
 		}, 1000)
 	});
 
@@ -39,19 +39,19 @@ describe('basic tests - write stuff to disk - ', function () {
 
 	 	writer.write('boo', function() {
 	 		callbackCalled = true;
-	 	});		
+	 	});
 
 		this.timeout(2000);
 		setTimeout(function () {
 			fs.readFile(logfile, function(err, data) {
 				if (err) {
-					assert.fail(err);					
+					assert.fail(err);
 				}
 
 				assert.deepEqual(new Buffer('boo'), data)
 				assert.strictEqual(true, callbackCalled, 'callback not fired');
 				done();
-			});	
+			});
 		}, 1000)
 	});
 
@@ -63,19 +63,19 @@ describe('basic tests - write stuff to disk - ', function () {
 
 	 	writer.write(new Buffer('boo').toString('base64'), 'base64', function() {
 	 		callbackCalled = true;
-	 	});		
+	 	});
 
 		this.timeout(2000);
 		setTimeout(function () {
 			fs.readFile(logfile, 'base64', function(err, data) {
 				if (err) {
-					assert.fail(err);					
+					assert.fail(err);
 				}
 
 				assert.strictEqual(new Buffer('boo').toString('base64'), data)
 				assert.strictEqual(true, callbackCalled, 'callback not fired');
 				done();
-			});	
+			});
 		}, 1000)
 	});
 
@@ -83,41 +83,41 @@ describe('basic tests - write stuff to disk - ', function () {
 		var logfile = testutil.newLogFilename();
 		var writer = testutil.newWriter(logfile);
 
-	 	writer.write(new Buffer('boo'));		
+	 	writer.write(new Buffer('boo'));
 
 		this.timeout(2000);
 		setTimeout(function () {
 			fs.readFile(logfile, function(err, data) {
 				if (err) {
-					assert.fail(err);					
+					assert.fail(err);
 				}
 
 				assert.deepEqual(new Buffer('boo'), data)
 				done();
-			});	
+			});
 		}, 1000)
 	});
 
 	it('buffers with callback', function (done) {
 		var logfile = testutil.newLogFilename();
 		var writer = testutil.newWriter(logfile);
-		
+
 		var callbackCalled = false;
 	 	writer.write(new Buffer('boo'), function() {
 	 		callbackCalled = true;
-	 	});		
+	 	});
 
 		this.timeout(2000);
 		setTimeout(function () {
 			fs.readFile(logfile, function(err, data) {
 				if (err) {
-					assert.fail(err);					
+					assert.fail(err);
 				}
 
 				assert.deepEqual(new Buffer('boo'), data)
 				assert.strictEqual(true, callbackCalled, 'callback not fired');
 				done();
-			});	
+			});
 		}, 1000)
 	});
 
@@ -126,11 +126,11 @@ describe('basic tests - write stuff to disk - ', function () {
 		var logfile = testutil.newLogFilename();
 		var writer = testutil.newWriter(logfile);
 
-	 	writer.write(new testutil.TestStream(testutil.createRowData(20)));		
+	 	writer.write(new testutil.TestStream(testutil.createRowData(20)));
 
 		this.timeout(2000);
 		setTimeout(function () {
-			fs.readFile(logfile, 'utf8', testutil.verifyDataIntegrity(1, 20, done));	
+			fs.readFile(logfile, 'utf8', testutil.verifyDataIntegrity(1, 20, done, writer.currentPath));
 		}, 1000)
 	});
 
@@ -141,12 +141,12 @@ describe('basic tests - write stuff to disk - ', function () {
 		var callbackFired = false;
 	 	writer.write(new testutil.TestStream(testutil.createRowData(20)), function () {
 	 		callbackFired = true;
-	 	});		
+	 	});
 
 		this.timeout(2000);
 		setTimeout(function () {
 			assert.strictEqual(true, callbackFired);
-			fs.readFile(logfile, 'utf8', testutil.verifyDataIntegrity(1, 20, done));	
+			fs.readFile(logfile, 'utf8', testutil.verifyDataIntegrity(1, 20, done, writer.currentPath));
 		}, 1000)
 	});
 
@@ -155,7 +155,7 @@ describe('basic tests - write stuff to disk - ', function () {
 		var logfile = testutil.newLogFilename();
 		var writer = testutil.newWriter(logfile);
 
-	 	writer.write(new Buffer('boo\n'));		
+	 	writer.write(new Buffer('boo\n'));
 	 	writer.write(new testutil.TestStream('A' + testutil.createRowData(20)));
 	 	writer.write(new testutil.TestStream('B' + testutil.createRowData(20)));
 	 	writer.write('C' + testutil.createRowData(100));
@@ -177,11 +177,13 @@ describe('basic tests - write stuff to disk - ', function () {
 				assert.strictEqual('C', parsed[3][0]);
 
 				done();
-			});	
+			});
 		}, 1000)
 	});
 
 	it('ends', function (done) {
+		this.timeout(15000);
+
 		var logfile = testutil.newLogFilename();
 		var writer = testutil.newWriter(logfile);
 
@@ -191,7 +193,7 @@ describe('basic tests - write stuff to disk - ', function () {
 
 		assert.ok(writer._buffer.length > 0);
 
-		writer.end();
+		writer.end(done);
 
 		try {
 			writer.write('should not be written');
@@ -201,11 +203,5 @@ describe('basic tests - write stuff to disk - ', function () {
 		}
 
 		console.log('if this test times out it means that there was a problem with the flushing, its either too slow or not happening at all');
-
-		this.timeout(15000);
-		setInterval(function () {
-			if(writer._buffer.length === 0)
-				done();
-		}, 2000);
 	});
 });
