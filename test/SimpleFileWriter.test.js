@@ -204,4 +204,36 @@ describe('basic tests - write stuff to disk - ', function () {
 
 		console.log('if this test times out it means that there was a problem with the flushing, its either too slow or not happening at all');
 	});
+
+	it('can be paused and resumed', function (done) {
+		var logFile = testutil.newLogFilename()
+		var writer = testutil.newWriter(logFile);
+
+		writer.pause()
+
+		writer.write('123')
+		writer.write('123')
+		writer.write('123')
+
+		assert.strictEqual(writer._buffer.length, 3)
+
+		fs.readFile(logFile, 'utf8', function(err, data) {
+			if (err) return done(err)
+
+			assert(!data)
+
+			writer.resume()
+
+			setTimeout(function () {
+				assert.strictEqual(writer._buffer.length, 0)
+				
+				fs.readFile(logFile, 'utf8', function(err, data) {
+					if (err) return done(err)
+
+					assert.strictEqual(data, '123123123')
+					done()
+				})
+			}, 500)	
+		})		
+	})
 });
