@@ -58,7 +58,7 @@ describe('mass rotate test - ', function () {
 
 			console.log('verifying data integrity in %s', file);
 
-			function cb(rowsInThisFile) {
+			function cb(err, rowsInThisFile) {
 				rowsCountedFromDisk += rowsInThisFile;
 				console.log('file %s has %s rows (%s/%s)', file, rowsInThisFile, rowsCountedFromDisk, rows);
 				checked++;

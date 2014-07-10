@@ -77,7 +77,7 @@ module.exports.verifyDataIntegrity = function(expectedRowCount, expectedRowSize,
 			assert.strictEqual(expectedSum, sum, 'unexpected sum in a row ' + i + ' in file: ' + filename);
 		}
 
-		done(rows.length);
+		done(null, rows.length);
 	};
 };
 
