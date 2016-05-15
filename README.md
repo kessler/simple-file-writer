@@ -15,7 +15,7 @@ npm install simple-file-writer
 
 ###usage example 1 - strings or buffers
 
-```
+```javascript
 	var SimpleFileWriter = require('simple-file-writer');
 
 	var writer = new SimpleFileWriter('./1.log');
@@ -30,7 +30,7 @@ npm install simple-file-writer
 ```
 
 ### usage example 2 - streams
-```
+```javascript
 	var SimpleFileWriter = require('simple-file-writer');
 
 	var writer = new SimpleFileWriter('./1.log');
@@ -51,7 +51,7 @@ npm install simple-file-writer
 ```
 
 ### usage example 3 - MIX!
-```
+```javascript
 	var SimpleFileWriter = require('simple-file-writer');
 
 	var writer = new SimpleFileWriter('./1.log');
